@@ -215,14 +215,14 @@ def prepare_data(data_dir, output_dir, target_size=(384, 288), mode='crop', num_
         print(f"已保存处理示例图片: {sample_check_dst}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="准备HKU建筑数据集")
-    parser.add_argument("--data_dir", type=str, required=True, help="原始数据目录")
-    parser.add_argument("--output_dir", type=str, required=True, help="处理后的数据输出目录")
-    parser.add_argument("--width", type=int, default=384, help="目标图像宽度")
-    parser.add_argument("--height", type=int, default=288, help="目标图像高度")
+    parser = argparse.ArgumentParser(description="Prepare HKU Building Dataset")
+    parser.add_argument("--data_dir", type=str, default="./hku_buildings_raw", help="Raw data directory")
+    parser.add_argument("--output_dir", type=str, default="./hku_buildings_processed", help="Processed data directory")
+    parser.add_argument("--width", type=int, default=512, help="目标图像宽度")
+    parser.add_argument("--height", type=int, default=384, help="目标图像高度")
     parser.add_argument("--mode", type=str, choices=['crop', 'pad', 'stretch', 'smart_crop'], 
-                       default='crop', help="图像处理模式")
-    parser.add_argument("--workers", type=int, default=4, help="并行处理的工作线程数")
+                       default='crop', help="Image processing mode")
+    parser.add_argument("--workers", type=int, default=8, help="Number of worker threads for processing")
     
     args = parser.parse_args()
     prepare_data(args.data_dir, args.output_dir, (args.width, args.height), args.mode, args.workers)
