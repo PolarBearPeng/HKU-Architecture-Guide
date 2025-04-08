@@ -1,0 +1,5 @@
+hku_buildings_raw/
+hku_buildings_processed/
+.gradio/
+__pycache__/
+output/
