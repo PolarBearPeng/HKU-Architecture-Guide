@@ -176,7 +176,7 @@ class HKUBuildingRecognizer:
         try:
             print("使用Float16精度开始推理...")
             # 使用自动混合精度并强制Float16
-            with torch.cuda.amp.autocast(enabled=True, dtype=torch.float16):
+            with torch.amp.autocast('cuda', enabled=True, dtype=torch.float16):
                 # 准备模型输入 - 参考源代码使用**运算符展开参数
                 inputs_embeds = base_model.prepare_inputs_embeds(**prepare_inputs)
                 

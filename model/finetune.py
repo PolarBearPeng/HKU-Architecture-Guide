@@ -44,7 +44,7 @@ class JanusTrainer(Trainer):
         base_model = model.base_model.model if hasattr(model, 'base_model') and hasattr(model.base_model, 'model') else model
         
         # 只使用方法1：Janus原始调用流程
-        with torch.cuda.amp.autocast():  # 使用自动混合精度
+        with torch.amp.autocast('cuda'):  # 使用自动混合精度
             # 1. 准备输入嵌入
             inputs_embeds = base_model.prepare_inputs_embeds(
                 pixel_values=tmp_inputs["pixel_values"],
